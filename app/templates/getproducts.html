@@ -1,0 +1,94 @@
+{% extends 'base.html'%}
+
+{% block title %}
+getproducts
+{% endblock %}
+
+{% block navbar%}
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+    <div class="container-fluid">
+        <a class="navbar-brand" href="{{ url_for('index')}}"> Página Inicial</a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
+            aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav me-auto">
+                <li class="nav-item">
+                    <a class="nav-link" href="#"></a>
+                </li>
+            </ul>
+            <ul class="navbar-nav ms-auto">
+                <li class="nav-item">
+                    <a class="nav-link" href="{{ url_for('usuario') }}">Voltar</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="{{ url_for('index') }}">Sair</a>
+                </li>
+            </ul>
+        </div>
+    </div>
+</nav>
+{% endblock %}
+
+{% block conteudo %}
+<h2 style="text-align: center">Produtos cadastrados</h2>
+<hr>
+<button id="consultar-produtos" class="btn btn-success float-end">Atualizar</button>
+
+
+<table class="table table-striped">
+    <thead>
+        <tr>
+            <th>ID</th>
+            <th>Tipo</th>
+            <th>Nome</th>
+            <th>Corante</th>
+            <th>Transgênico</th>
+            <th>Aditivos Químicos</th>
+            <th>Organismo Geneticamente Modificado</th>
+        </tr>
+    </thead>
+    <tbody id="lista-produtos">
+        {% for product in products %}
+        <tr>
+            <td>{{ product.id }}</td>
+            <td>{{ product.type }}</td>
+            <td>{{ product.name }}</td>
+            <td>{{ product.corante }}</td>
+            <td>{{ product.transgênico }}</td>
+            <td>{{ product.aditivos_quimicos }}</td>
+            <td>{{ product.organismo_geneticamente_modificado }}</td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+
+<script>
+<script>
+$(document).ready(function() {
+    $("#consultar-produtos").click(function() {
+        // Fazer uma requisição GET para a rota /api/products
+        $.get("/api/products", function(data) {
+            // Limpar a tabela antes de adicionar os novos produtos
+            $("#lista-produtos").empty();
+
+            // Adicionar cada produto à tabela
+            data.forEach(function(produto) {
+                $("#lista-produtos").append(
+                    "<tr>" +
+                    "<td>" + produto.id + "</td>" +
+                    "<td>" + produto.type + "</td>" +
+                    "<td>" + produto.name + "</td>" +
+                    "<td>" + produto.corante + "</td>" +
+                    "<td>" + produto.transgênico + "</td>" +
+                    "<td>" + produto.aditivos_quimicos + "</td>" +
+                    "<td>" + produto.organismo_geneticamente_modificado + "</td>" +
+                    "</tr>"
+                );
+            });
+        });
+    });
+});
+</script>
+{% endblock %}

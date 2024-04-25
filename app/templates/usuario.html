@@ -1,0 +1,53 @@
+{% extends 'base.html'%}
+
+{% block title%}
+usuario
+{% endblock%}
+
+{% block navbar%}
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+        <div class="container-fluid">
+            <a class="navbar-brand" href="{{url_for('index')}}">Página Inicial</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
+                aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav me-auto">
+                    <li class="nav-item">
+                        <a class="nav-link active" aria-current="page" href="#"></a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#"></a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#"></a>
+                    </li>
+                </ul>
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item">
+                       <a class="nav-link" href="{{ url_for('login') }}"></a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{{ url_for('index') }}">Sair</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+{% endblock %}
+
+
+{%block conteudo%}
+<h2 style="text-align: center">O que você deseja fazer?</h2>
+    <hr>
+    <nav class="navbar navbar-light bg-light">
+        <div class="container justify-content-center">
+            <form class="d-flex">
+                <a href="{{url_for('cadastrar_produto')}}" class="btn btn-outline-success me-3">Cadastrar novo produto</a>
+
+                <a href="{{url_for('get_products')}}" class="btn btn-outline-success me-3" type="button">Consultar produtos</a>
+            </form>
+        </div>
+    </nav>
+{%endblock%}

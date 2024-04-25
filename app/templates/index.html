@@ -1,0 +1,48 @@
+{% extends 'base.html'%}
+
+{% block title %}
+      home
+{% endblock %}
+
+{% block navbar %}
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+        <div class="container-fluid">
+            <a class="navbar-brand" href="{{ url_for('login') }}"> Produtos</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
+                aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav me-auto">
+                    <li class="nav-item">
+                        <a class="nav-link" href="#"></a>
+                    </li>
+                </ul>
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item">
+                       <a class="nav-link" href="{{ url_for('login') }}"></a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{{ url_for('cadastro') }}"></a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+{% endblock %}
+
+{% block conteudo %}
+<div class="container mt-5">
+    <div class="row justify-content-center">
+        <div class="col-md-6 text-center">
+            <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSLRiUmO923ONMOreOiUYhrSxZ7bSeLZnqo8Q&s" alt="Feed Supply Imagem"  class="img-fluid mb-1">
+            <h1 class="mb-1">Feed Supply</h1>
+            <p class="lead mb-3">Bem-vindo à nossa plataforma de alimentação animal!
+            Uma comunidade dedicada a fornecer informações valiosas sobre as principais rações do mercado pet.</p>
+
+            <a href="{{ url_for('cadastro') }}" class="btn btn-outline-success" type="button">Iniciar</a>
+        </div>
+    </div>
+</div>
+{% endblock %}
+

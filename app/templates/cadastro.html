@@ -1,0 +1,62 @@
+{% extends 'index.html' %}
+
+{% block title %}
+Página cadastro
+{% endblock %}
+
+{% block navbar %}
+ <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+        <div class="container-fluid">
+            <a class="navbar-brand" href="{{ url_for('login') }}"> Produtos</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
+                aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav me-auto">
+                    <li class="nav-item">
+                        <a class="nav-link" href="#"></a>
+                    </li>
+                </ul>
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item">
+                       <a class="nav-link" href="{{ url_for('login') }}"></a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{{ url_for('login') }}">Login</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+{% endblock %}
+
+    {% block conteudo %}
+    <body class="text-left">
+        <div class="container">
+            <h2 style="text-align: center;">
+                Para cadastrar novos produtos, faça seu registro
+            </h2>
+            <form method="POST" class="form-cadastro" style="color: rgb(1, 5, 6);">
+                {{ form.csrf_token }}
+
+                {{ form.nome.label() }}
+                {{ form.nome(class='form-control', placeholder='Informe o nome completo') }}
+
+                {{ form.email.label() }}
+                {{ form.email(class='form-control', placeholder='Informe o E-mail') }}
+
+                {{ form.senha_hash.label() }}
+                {{ form.senha_hash(class='form-control', placeholder='Informe uma senha') }}
+
+                <br>
+                <div class="d-grid">
+                    {{ form.submit.label() }}
+                    {{ form.submit(class='btn btn-lg btn-success', placeholder='Confirme a senha') }}
+                </div>
+            </form>
+        </div>
+    </body>
+    {% endblock %}
+
