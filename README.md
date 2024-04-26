@@ -1,8 +1,10 @@
 <H3>Desafio de projeto: Desenvolver uma aplicação em Flask usando FastAPI para construir aplicação em python </H3>
+Professores: Rafael Galleani e Diego Rennan.
+
 
 **Objetivo:**
 Desenvolver em Flask uma página web onde o usuário possa interagir com a  aplicação; utilizando
-FastAPI para construir uma API em python;
+FastAPI para construir uma API em python para armazenar uma lista de produtos.
 
 **Nome da aplicação: Feed Supplay**
 
@@ -46,3 +48,5 @@ o banco de dados.
 visualização de dados específicos do usuário e os produtos que ele adicionou.
 
 Mais informações na documentação da aplicação.
+
+![](img/home.png)
