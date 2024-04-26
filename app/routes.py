@@ -1,4 +1,4 @@
-from flask import render_template, request
+from flask import render_template, request,session,  redirect, url_for
 from flask import redirect
 from flask import url_for
 from app import app
@@ -12,6 +12,7 @@ def index():
 
 @app.route('/login', methods=['GET', 'POST'])  #  Login do usuario
 def login():
+    session.clear()
     if request.method == 'POST':
         email = request.form['email']
         senha = request.form['senha']
@@ -23,6 +24,8 @@ def login():
             # Se o usuário existir, verifica se a senha está correta
             if user.check_password(senha):
                 print("Login bem-sucedido, redirecionando para a página do usuário")
+                # Define o usuario_id na sessão
+                session['usuario_id'] = user.id
                 # Login bem-sucedido
                 return redirect(url_for('page_usuario'))
             else:
@@ -34,13 +37,9 @@ def login():
 
     # Se o método HTTP for GET, renderiza apenas o template de login
     return render_template('login.html')
-
-@app.route('/usuario')  #  Pagina do usuário
+    
+@app.route('/usuario')  # Exibe a página do usuário
 def page_usuario():
-    return render_template('usuario.html')
-
-@app.route('/usuario')  #  rota para que apenas usuários autenticados possam ter acesso a ela
-def usuario():
     # Verifica se o usuário está autenticado:
     if 'usuario_id' in session:
         # Se sim, renderiza a página do usuário:
@@ -48,7 +47,8 @@ def usuario():
     else:
         # Se não, redireciona para a página de login:
         return redirect(url_for('login'))
-
+    
+    
 @app.route('/cadastro_produto', methods=['GET', 'POST'])
 def cadastrar_produto():
     if request.method == 'POST':

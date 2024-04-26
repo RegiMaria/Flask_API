@@ -3,8 +3,7 @@ from app import app, db
 from app.models import Product
 from flask import render_template
 
-
-#Essa rota é de criação do produto
+#Essa rota é a rota de criação do produto
 @app.route('/api/products', methods=['POST'])
 def create_product():
     data = request.json
@@ -28,10 +27,28 @@ def create_product():
         'products_url': products_url
     }), 201
 
-# Rota para obter todos os produtos em HTML:
+# Apresentação do produtos em HTML:
 @app.route('/api/products', methods=['GET'])
 def get_products():
     products = Product.query.all()
     return render_template('getproducts.html', products=products)
 
  # Separar a rota da resposta em JSON e da resposta em HTML
+# Rota para obter todos os produtos em formato JSON:
+@app.route('/api/products/json', methods=['GET'])
+def get_products_json():
+    products = Product.query.all()
+    products_list = []
+    for product in products:
+        product_data = {
+            'id': product.id,
+            'name': product.name,
+            'type': product.type,
+            'corante': product.corante,
+            'transgenico': product.transgênico,
+            'aditivos_quimicos': product.aditivos_quimicos,
+            'organismo_geneticamente_modificado': product.organismo_geneticamente_modificado
+        }
+        products_list.append(product_data)
+    return jsonify(products_list)
+
