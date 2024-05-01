@@ -93,7 +93,8 @@ flask db downgrade
 secret_key = secrets.token_hex(16)
 
  print(secret_key)
-
+ ou
+ print(app.config['SECRET_KEY'])
 **Armazenando a 'secret_key' numa variável de ambiente:**
 setx FLASK_SECRET_KEY "sua_chave_secreta_aqui"
 

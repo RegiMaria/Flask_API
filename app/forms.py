@@ -8,3 +8,8 @@ class Cadastroform(FlaskForm):
     email = StringField(label='Email')
     senha_hash = PasswordField(label='Senha', validators=[DataRequired()])
     submit = SubmitField(label='Cadastrar')
+
+class LoginForm(FlaskForm):
+    email = StringField('Email', validators=[DataRequired()])
+    senha = PasswordField('Senha', validators=[DataRequired()])
+    submit = SubmitField('Entrar')

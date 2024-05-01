@@ -1,7 +1,9 @@
-from app import db
+from app import db, login_manager
 from werkzeug.security import generate_password_hash, check_password_hash
 from wtforms import PasswordField
-from wtforms.validators import DataRequired
+from wtforms.validators import DataRequired, Email
+from sqlalchemy import event
+from flask_login import  UserMixin
 
 
 class Product(db.Model):
@@ -13,10 +15,10 @@ class Product(db.Model):
     aditivos_quimicos = db.Column(db.Text, nullable=True)
     organismo_geneticamente_modificado = db.Column(db.Text, nullable=True)
 
-class User(db.Model):
+class User(db.Model, UserMixin):
     id = db.Column(db.Integer, primary_key=True)
     nome = db.Column(db.String(50), unique=True, nullable=False)
-    email = db.Column(db.String(120), unique=True, nullable=False)
+    email = db.Column(db.String(120),unique=True, nullable=False)
     senha_hash = db.Column(db.String(128), nullable=False)   #senha_hash
 
     def set_password(self, password):
@@ -25,6 +27,28 @@ class User(db.Model):
     def check_password(self, password):
         return check_password_hash(self.senha_hash, password)
 
+# Função para truncar automaticamente os dados que excedem o limite
+    @staticmethod
+    def truncate_long_values_before_insert(mapper, connection, target):
+        if len(target.nome) > 50:
+            target.nome = target.nome[:50]
+        if len(target.email) > 120:
+            target.email = target.email[:120]
+        if len(target.senha_hash) > 128:
+            target.senha_hash = target.senha_hash[:128]
+
+# Adiciona o listener para o evento 'before_insert'
+event.listen(User, 'before_insert', User.truncate_long_values_before_insert)
+
+@login_manager.user_loader
+def load_user(user_id):
+    return User.query.get(int(user_id))
+
+
+    # função truncate_long_values_before_insert é definida para verificar os comprimentos
+    # dos campos nome, email e senha_hash e truncá-los, se necessário, 
+    #antes de realizar a inserção no banco de dados. 
+    #Esta função é então associada ao evento before_insert do modelo User usando event.listen.
 
     # a SENHA do usuário é um hash da senha, uma representação
     # criptograficamente segura e irreversível da senha original.
