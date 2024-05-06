@@ -1,5 +1,7 @@
 Atualização 3 - 06/05/2024
+
 **Templates**
+
 - register.html:
 Atualizamos o registro de usuário (/register);
 
@@ -8,6 +10,7 @@ Atulaizamos o login do usuárion(/login);
 
 
 **Routes**
+
 register e login
 
 Atualizmos a validação dos formulários. Anteriormente estávamos utilizando o objeto **request** 
