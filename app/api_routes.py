@@ -3,7 +3,7 @@ from app import app, db
 from app.models import Product
 from flask import render_template
 
-#Essa rota é a rota de criação do produto
+#Essa rota é a rota de criação de um produto:
 @app.route('/api/products', methods=['POST'])
 def create_product():
     data = request.json
@@ -12,14 +12,14 @@ def create_product():
         type=data['type'],
         corante=data['corante'],
         transgênico=data['transgenico'],
-        aditivos_quimicos=data['aditivos'],
-        organismo_geneticamente_modificado=data['ogm']
+        aditivos_quimicos_sintéticos=data['aditivos'],
+        organismos_geneticamente_modificados=data['ogm']
     )
     db.session.add(new_product)
     db.session.commit()
 
     # URL da página de produtos cadastrados:
-    products_url = url_for('get_products', _external=True)
+    products_url = url_for('products', _external=True)
 
     # Retorne a resposta JSON com a mensagem e a URL da página de produtos cadastrados
     return jsonify({

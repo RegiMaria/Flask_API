@@ -1,4 +1,4 @@
-{% extends 'base.html'%}
+% extends 'base.html'%}
 
 {% block title%}
 usuario
@@ -29,13 +29,30 @@ usuario
                        <a class="nav-link" href="{{ url_for('login') }}"></a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="{{ url_for('logout') }}">Sair</a>
+                        <a class="nav-link" href="#">Sair</a>
                     </li>
                 </ul>
             </div>
         </div>
     </nav>
+    {% with messages = get_flashed_messages(with_categories=True) %}
+    {% if messages %}
+        <div class="container mt-3">
+            <div class="row">
+                <div class="col-md-6 mx-auto"> <!-- Adicionado mx-auto para centralizar horizontalmente -->
+                    {% for category, message in messages %}
+                        <div class="alert alert-{{ category }} text-center alert-dismissible fade show" role="alert">
+                            {{ message }}
+                            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                        </div>
+                    {% endfor %}
+                </div>
+            </div>
+        </div>
+    {% endif %}
+{% endwith %}
 {% endblock %}
+
 
 
 {%block conteudo%}
@@ -44,9 +61,9 @@ usuario
     <nav class="navbar navbar-light bg-light">
         <div class="container justify-content-center">
             <form class="d-flex">
-                <a href="{{url_for('cadastrar_produto')}}" class="btn btn-outline-success me-3">Cadastrar novo produto</a>
+                <a href="#" class="btn btn-outline-success me-3">Cadastrar ou editar produtos</a>
 
-                <a href="{{url_for('get_products')}}" class="btn btn-outline-success me-3" type="button">Consultar produtos</a>
+                <a href="{{url_for('products')}}" class="btn btn-outline-success me-3" type="button">Consultar produtos</a>               
             </form>
         </div>
     </nav>

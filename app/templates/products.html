@@ -1,7 +1,7 @@
 {% extends 'base.html'%}
 
 {% block title %}
-getproducts
+products
 {% endblock %}
 
 {% block navbar%}
@@ -20,10 +20,10 @@ getproducts
             </ul>
             <ul class="navbar-nav ms-auto">
                 <li class="nav-item">
-                    <a class="nav-link" href="{{ url_for('page_usuario') }}">Voltar</a>
+                    <a class="nav-link" href="{{url_for('register')}}">Cadastro</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="{{ url_for('logout') }}">Sair</a>
+                    <a class="nav-link" href="{{url_for('login')}}">Login</a>
                 </li>
             </ul>
         </div>
@@ -45,8 +45,8 @@ getproducts
             <th>Nome</th>
             <th>Corante</th>
             <th>Transgênico</th>
-            <th>Aditivos Químicos</th>
-            <th>Organismo Geneticamente Modificado</th>
+            <th>Aditivos Químicos Sintéticos</th>
+            <th>Organismos Geneticamente Modificados</th>
         </tr>
     </thead>
     <tbody id="lista-produtos">
@@ -57,8 +57,8 @@ getproducts
             <td>{{ product.name }}</td>
             <td>{{ product.corante }}</td>
             <td>{{ product.transgênico }}</td>
-            <td>{{ product.aditivos_quimicos }}</td>
-            <td>{{ product.organismo_geneticamente_modificado }}</td>
+            <td>{{ product.aditivos_quimicos_sinteticos }}</td>
+            <td>{{ product.organismos_geneticamente_modificados }}</td>
         </tr>
         {% endfor %}
     </tbody>
@@ -82,8 +82,8 @@ $(document).ready(function() {
                     "<td>" + produto.name + "</td>" +
                     "<td>" + produto.corante + "</td>" +
                     "<td>" + produto.transgênico + "</td>" +
-                    "<td>" + produto.aditivos_quimicos + "</td>" +
-                    "<td>" + produto.organismo_geneticamente_modificado + "</td>" +
+                    "<td>" + produto.aditivos_quimicos_sinteticos + "</td>" +
+                    "<td>" + produto.organismos_geneticamente_modificados + "</td>" +
                     "</tr>"
                 );
             });

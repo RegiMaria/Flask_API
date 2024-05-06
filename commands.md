@@ -1,3 +1,12 @@
+**Instalação dos pacotes:**
+flask
+flak-sqlalchemy
+psycopg2
+flask_login
+flask-snippets (extensão pra vscode)
+flask-wTF
+WTForms
+flask_bcrypt
 
 
 1. Teste a conexão com bd postegreSQL
