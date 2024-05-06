@@ -1,4 +1,4 @@
-% extends 'base.html'%}
+{% extends 'base.html'%}
 
 {% block title%}
 usuario
@@ -13,6 +13,7 @@ usuario
                 <span class="navbar-toggler-icon"></span>
             </button>
             <div class="collapse navbar-collapse" id="navbarNav">
+                
                 <ul class="navbar-nav me-auto">
                     <li class="nav-item">
                         <a class="nav-link active" aria-current="page" href="#"></a>
@@ -24,14 +25,16 @@ usuario
                         <a class="nav-link" href="#"></a>
                     </li>
                 </ul>
-                <ul class="navbar-nav ms-auto">
-                    <li class="nav-item">
-                       <a class="nav-link" href="{{ url_for('login') }}"></a>
+                <ul class="navbar-nav ms-auto align-items-center">
+                    <li class="nav-item" style="color: lawngreen;width: 100px;" >
+                        <i class="fas fa-paw"></i> <!-- Corrigido o uso do ícone -->
+                        Olá, {{ current_user.nome }}
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="#">Sair</a>
+                        <a class="nav-link" href="{{ url_for('logout') }}">Sair</a>
                     </li>
                 </ul>
+                
             </div>
         </div>
     </nav>
@@ -67,4 +70,6 @@ usuario
             </form>
         </div>
     </nav>
+    <script src="https://kit.fontawesome.com/655857084e.js" crossorigin="anonymous"></script>
+
 {%endblock%}

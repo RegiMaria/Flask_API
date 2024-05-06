@@ -24,7 +24,7 @@ class User(db.Model, UserMixin):
     id = db.Column(db.Integer, primary_key=True)
     nome = db.Column(db.String(50), unique=True, nullable=False)
     email = db.Column(db.String(120), unique=True, nullable=False)
-    senha = db.Column(db.String(128), unique=True, nullable=False)  #senha_hash
+    senha = db.Column(db.String(128), nullable=False)  #senha_hash
     products = db.relationship("Product", back_populates="owner")  # Relacionamento com os produtos
 
     @property

@@ -1,4 +1,4 @@
-% extends 'index.html' %}
+{% extends 'index.html' %}
 
 {% block title %}
 Página cadastro
@@ -18,13 +18,23 @@ Página cadastro
                         <a class="nav-link" href="#"></a>
                     </li>
                 </ul>
-                <ul class="navbar-nav ms-auto">
-                    <li class="nav-item">
-                       <a class="nav-link" href="#"></a>
+                {% if current_user.is_authenticated %}
+                <ul class="navbar-nav ms-auto align-items-center">
+                    <li class="nav-item" style="color: lawngreen; width: 100px;">
+                        <i class="fas fa-paw"></i> <!-- Corrigido o uso do ícone -->
+                        Olá, {{ current_user.nome }}
+                    </li>                       
+                        <li class="nav-item">
+                            <a class="nav-link" href="{{url_for(logout)}}">Sair</a>
+                        </li>
+                    {% else %}
+                    <li>
+                        <a class="nav-link" href="#"></a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="{{url_for('login')}}">Login</a>
                     </li>
+                    {% endif %}
                 </ul>
             </div>
         </div>

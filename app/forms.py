@@ -1,4 +1,3 @@
-from app import db
 from flask_wtf import FlaskForm
 from wtforms import StringField, PasswordField, SubmitField
 from wtforms.validators import DataRequired, Length, Email, ValidationError
@@ -15,14 +14,9 @@ class RegistrationForm(FlaskForm):
         if email:
             raise ValidationError("Email já existe! Cadastre outro email")
 
-    def validate_senha(self, check_senha):
-        senha = User.query.filter_by(senha=check_senha.data).first()
-        if senha:
-            raise ValidationError("Senha já existe! Cadastre outra senha")
-
     nome = StringField(label='Nome completo', validators=[DataRequired(), Length(min=2, max=30)])
     email = StringField(label='Email', validators=[DataRequired(), Email()])
-    senha = PasswordField(label='Senha', validators=[DataRequired(), Length(min=4)])
+    senha = PasswordField(label='Senha', validators=[DataRequired(), Length(min=4, message="A senha deve ter no mínimo 4 caracteres.")])
     submit = SubmitField(label='Cadastrar')
 
 class LoginForm(FlaskForm):

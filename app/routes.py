@@ -4,7 +4,7 @@ from app import db
 from app.models import Product, User
 from app.forms import RegistrationForm
 from app.forms import LoginForm
-from flask_login import login_user
+from flask_login import login_user, logout_user, login_required
 
 
 @app.route('/')
@@ -51,9 +51,14 @@ def users():
 
 
 @app.route('/products')
+@login_required  # proteger rotas específicas
 def products():
     products = Product.query.all()
     return render_template('products.html', products=products)
 
-
+@app.route('/logout')
+def logout():
+    logout_user()
+    flash('Você saiu com sucesso.', category='info')
+    return redirect(url_for('index'))
 
