@@ -1,5 +1,5 @@
 from flask_wtf import FlaskForm
-from wtforms import StringField, PasswordField, SubmitField
+from wtforms import StringField, PasswordField, SubmitField, TextAreaField, SelectField
 from wtforms.validators import DataRequired, Length, Email, ValidationError
 from app.models import User
 
@@ -23,3 +23,13 @@ class LoginForm(FlaskForm):
     email = StringField(label='Email', validators=[DataRequired()])
     senha = PasswordField(label='Senha', validators=[DataRequired()])
     submit = SubmitField(label='Log In')
+
+
+class ProductForm(FlaskForm):
+    type = StringField('Tipo', validators=[DataRequired(), Length(max=100)], render_kw={"placeholder": "Standart, especial, premium, super premium, natural ..."})
+    name = StringField('Nome', validators=[DataRequired(), Length(max=100)], render_kw={"placeholder": "Marca"})
+    corante = SelectField('Corante', choices=[('Sim', 'Sim'), ('Não', 'Não'), ('Não declarado pelo fabricante', 'Não declarado pelo fabricante')])
+    transgenico = SelectField('Transgênico', choices=[('Sim', 'Sim'), ('Não', 'Não'), ('Não declarado pelo fabricante', 'Não declarado pelo fabricante')])
+    aditivos_quimicos_sinteticos = TextAreaField('Aditivos Químicos Sintéticos')
+    organismos_geneticamente_modificados = TextAreaField('Organismos Geneticamente Modificados')
+    submit = SubmitField('Cadastrar')

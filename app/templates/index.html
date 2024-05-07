@@ -21,13 +21,13 @@
                     <li class="nav-item" style="color: lawngreen; width: 100px;">
                         <i class="fas fa-paw"></i> <!-- Corrigido o uso do ícone -->
                         Olá, {{ current_user.nome }}
-                    </li> 
-                        
+                    </li>
+
                         <li class="nav-item">
-                            <a class="nav-link" href="#">Sair</a>
+                            <a class="nav-link" href="{{url_for('logout')}}">Sair</a>
                         </li>
                         {% endif %}
-                   
+
                 </ul>
             </div>
         </div>
@@ -59,7 +59,7 @@
                 <h1 class="mb-1">Feed Supply</h1>
                 <p class="lead mb-3">Bem-vindo à nossa plataforma de alimentação animal!
                 Uma comunidade dedicada a fornecer informações valiosas sobre as principais rações do mercado pet.</p>
-                
+
                 <a href={{url_for('users')}} class="btn btn-outline-success" type="button">Iniciar</a>
             </div>
            {% else %}
@@ -69,7 +69,7 @@
                 <h1 class="mb-1">Feed Supply</h1>
                 <p class="lead mb-3">Bem-vindo à nossa plataforma de alimentação animal!
                 Uma comunidade dedicada a fornecer informações valiosas sobre as principais rações do mercado pet.</p>
-                
+
                 <a href={{url_for('register')}} class="btn btn-outline-success" type="button">Iniciar</a>
             </div>
             {% endif %}
@@ -84,5 +84,3 @@
         integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL"
         crossorigin="anonymous"></script>
         <script src="https://kit.fontawesome.com/655857084e.js" crossorigin="anonymous"></script>
-
-</body>

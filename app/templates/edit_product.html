@@ -1,10 +1,98 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <title>$Title$</title>
-</head>
-<body>
-$END$
-</body>
-</html>
+{% extends 'index.html'%}
+
+{% block title%}
+edição de produtos
+{% endblock%}
+
+{% block navbar%}
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+        <div class="container-fluid">
+            <a class="navbar-brand" href="{{url_for('index')}}">Página Inicial</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
+                aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+
+                <ul class="navbar-nav me-auto">
+                    <li class="nav-item">
+                        <a class="nav-link active" aria-current="page" href="#"></a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#"></a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#"></a>
+                    </li>
+                </ul>
+                <ul class="navbar-nav ms-auto align-items-center">
+                    <li class="nav-item" style="color: lawngreen;width: 100px;" >
+                        <i class="fas fa-paw"></i>
+                        Olá, {{ current_user.nome }}
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{{ url_for('logout') }}">Sair</a>
+                    </li>
+                </ul>
+
+            </div>
+        </div>
+    </nav>
+
+{% endblock %}
+
+{% block conteudo %}
+<h2 style="text-align: center">Editar Produto</h2>
+<hr>
+
+<form id="form-edicao-produto" class="needs-validation" novalidate action="{{ url_for('edit_product', product_id=product.id) }}" method="POST">
+    {{ form.hidden_tag() }}
+    <div class="col-md-6 offset-md-3 my-5">
+        <div class="form-group">
+            {{ form.type.label(class="form-label") }}
+            {{ form.type(class="form-control", id="tipo", required=true, value=product.type) }}
+            <div class="invalid-feedback">
+                {{ form.type.errors[0] if form.type.errors else "Por favor, insira o tipo do produto." }}
+            </div>
+        </div>
+    </div>
+    <div class="col-md-6 offset-md-3 my-5">
+        <div class="form-group">
+            {{ form.name.label(class="form-label") }}
+            {{ form.name(class="form-control", id="nome", required=true, value=product.name) }}
+            <div class="invalid-feedback">
+                {{ form.name.errors[0] if form.name.errors else "Por favor, insira o nome do produto." }}
+            </div>
+        </div>
+    </div>
+    <div class="col-md-6 offset-md-3 my-5">
+        <div class="form-group">
+            {{ form.corante.label(class="form-label") }}
+            {{ form.corante(class="form-control", id="corante", value=product.corante) }}
+        </div>
+    </div>
+    <div class="col-md-6 offset-md-3 my-5">
+        <div class="form-group">
+            {{ form.transgenico.label(class="form-label") }}
+            {{ form.transgenico(class="form-control", id="transgenico", value=product.transgenico) }}
+        </div>
+    </div>
+    <div class="col-md-6 offset-md-3 my-5">
+        <div class="form-group">
+            {{ form.aditivos_quimicos_sinteticos.label(class="form-label") }}
+            {{ form.aditivos_quimicos_sinteticos(class="form-control", id="aditivos", value=product.aditivos_quimicos_sinteticos) }}
+        </div>
+    </div>
+    <div class="col-md-6 offset-md-3 my-5">
+        <div class="form-group">
+            {{ form.organismos_geneticamente_modificados.label(class="form-label") }}
+            {{ form.organismos_geneticamente_modificados(class="form-control", id="ogm", value=product.organismos_geneticamente_modificados) }}
+        </div>
+    </div>
+
+
+    <div class="col-md-6 offset-md-3 my-5 text-center">
+        <button type="submit" class="btn btn-outline-success">Salvar Alterações</button>
+    </div>
+</form>
+{% endblock %}

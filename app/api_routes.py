@@ -27,16 +27,16 @@ def create_product():
         'products_url': products_url
     }), 201
 
-# Apresentação do produtos em HTML:
+# Busca e renderiza os produtos em HTML:
 @app.route('/api/products', methods=['GET'])
-def get_products():
+def products():
     products = Product.query.all()
-    return render_template('getproducts.html', products=products)
+    return render_template('products.html', products=products)
 
  # Separar a rota da resposta em JSON e da resposta em HTML
 # Rota para obter todos os produtos em formato JSON:
 @app.route('/api/products/json', methods=['GET'])
-def get_products_json():
+def products_json():
     products = Product.query.all()
     products_list = []
     for product in products:
@@ -51,4 +51,3 @@ def get_products_json():
         }
         products_list.append(product_data)
     return jsonify(products_list)
-

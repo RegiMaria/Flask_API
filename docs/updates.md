@@ -1,4 +1,5 @@
 Atualização 4 - 06/05/2024
+Atualização 5 - 07/05/2024
 
 **Templates**
 
@@ -42,3 +43,12 @@ Esta linha define a categoria da mensagem que será exibida aos usuários ao red
 **Font Awsome:**
 
 Adicionamos o ícone fas fas-paw;
+
+Atualizamos:
+Criamos template para edição e página de confirmação de cadastro de produtos.
+
+Na tabela 'products' adicionamos a coluna 'Ações'
+
+Utilizamos a função 'abort' do flask.
+
+Capturamos o ID do usuário da sessão atual e definimos como 'owner_id' do produto.

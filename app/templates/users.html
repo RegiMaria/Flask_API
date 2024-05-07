@@ -13,7 +13,7 @@ usuario
                 <span class="navbar-toggler-icon"></span>
             </button>
             <div class="collapse navbar-collapse" id="navbarNav">
-                
+
                 <ul class="navbar-nav me-auto">
                     <li class="nav-item">
                         <a class="nav-link active" aria-current="page" href="#"></a>
@@ -27,14 +27,14 @@ usuario
                 </ul>
                 <ul class="navbar-nav ms-auto align-items-center">
                     <li class="nav-item" style="color: lawngreen;width: 100px;" >
-                        <i class="fas fa-paw"></i> <!-- Corrigido o uso do ícone -->
+                        <i class="fas fa-paw"></i>
                         Olá, {{ current_user.nome }}
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="{{ url_for('logout') }}">Sair</a>
                     </li>
                 </ul>
-                
+
             </div>
         </div>
     </nav>
@@ -64,9 +64,10 @@ usuario
     <nav class="navbar navbar-light bg-light">
         <div class="container justify-content-center">
             <form class="d-flex">
-                <a href="#" class="btn btn-outline-success me-3">Cadastrar ou editar produtos</a>
+                <a href="{{ url_for('product_addition') }}" class="btn btn-outline-success me-3">Cadastrar produtos</a>
 
-                <a href="{{url_for('products')}}" class="btn btn-outline-success me-3" type="button">Consultar produtos</a>               
+
+                <a href="{{url_for('products')}}" class="btn btn-outline-success me-3" type="button">Visualizar página de produtos</a>
             </form>
         </div>
     </nav>
