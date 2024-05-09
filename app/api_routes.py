@@ -11,9 +11,9 @@ def create_product():
         name=data['name'],
         type=data['type'],
         corante=data['corante'],
-        transgênico=data['transgenico'],
-        aditivos_quimicos_sintéticos=data['aditivos'],
-        organismos_geneticamente_modificados=data['ogm']
+        transgenico=data['transgenico'],
+        aditivos_quimicos_sinteticos=data['aditivos_quimicos_sinteticos'], #  erro aqui keyError
+        organismos_geneticamente_modificados=data['organismos_geneticamente_modificados']
     )
     db.session.add(new_product)
     db.session.commit()
@@ -29,11 +29,11 @@ def create_product():
 
 # Busca e renderiza os produtos em HTML:
 @app.route('/api/products', methods=['GET'])
-def products():
+def render_products():
     products = Product.query.all()
     return render_template('products.html', products=products)
 
- # Separar a rota da resposta em JSON e da resposta em HTML
+ # Separamos a rota da resposta em JSON e da resposta em HTML
 # Rota para obter todos os produtos em formato JSON:
 @app.route('/api/products/json', methods=['GET'])
 def products_json():
@@ -45,9 +45,9 @@ def products_json():
             'name': product.name,
             'type': product.type,
             'corante': product.corante,
-            'transgenico': product.transgênico,
-            'aditivos_quimicos': product.aditivos_quimicos,
-            'organismo_geneticamente_modificado': product.organismo_geneticamente_modificado
+            'transgenico': product.transgenico,
+            'aditivos_quimicos_sinteticos': product.aditivos_quimicos_sinteticos,
+            'organismos_geneticamente_modificados': product.organismos_geneticamente_modificados
         }
         products_list.append(product_data)
     return jsonify(products_list)

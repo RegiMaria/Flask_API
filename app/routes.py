@@ -73,10 +73,10 @@ def product_addition():
             name=form.name.data,
             type=form.type.data,
             corante=form.corante.data,
-            transgênico=form.transgenico.data,
+            transgenico=form.transgenico.data,
             aditivos_quimicos_sinteticos=form.aditivos_quimicos_sinteticos.data,  # Correção aqui
             organismos_geneticamente_modificados=form.organismos_geneticamente_modificados.data,
-            owner_id=current_user.id  #correçã do id aqui
+            owner_id=current_user.id  # Correção aqui
         )
         db.session.add(product)
         db.session.commit()

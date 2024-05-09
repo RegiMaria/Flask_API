@@ -30,19 +30,22 @@ O que significa que é possível enviar solicitações HTTP para a API com dados
 API os adicionará a lista de produto. Permitindo que outros aplicativos ou serviços acessem e 
 manipulem os dados da lista.
 
+O SGDB é o PostgreSQL.
+
 **E ainda:**
+
 - Estudamos sobre definição de rotas, funções e templates, lógica de negócio, validação de dados de entrada.
 - Estudamos sobre Flask-Migrate para  gestão da estrutura do banco de dados.
-- SQLAlchemy para manipulação e operações no BD. O SQLAlchemy é acamada de ORM utilizada pelo Flask para interagir com
-o banco de dados.
+- SQLAlchemy para manipulação e operações no BD. O SQLAlchemy é a camada de ORM utilizada pelo Flask para interagir com o banco de dados.
 
 **Funcionalidades que pretendemos melhorar:**
 
 - Incluir uma ferramenta para documentar a API;
 - Adicionar Edição e exclusão de produtos;
 - Melhorias na interface do usuário;
-- Implementação de sessões de usuário para manter o login persistente;
-- Logout de Usuário
+- Implementação de sessões de usuário para manter o login persistente; Através do flask_login, utilizamos o LoginManager para gerenciar a autenticação e sessão do usuário, garantindo que ele permaneça autenticado durante toda a navegação.
+- Logout de Usuário: 
+  - O Flask possui um pacote chamado Flask_login que fornece funcionalidades para gerenciar login. Dentro desse pacote, existe uma função chamada `logout_user()` que é utilizada para deslogar o usuário atual.
 - Melhorias na segurança, como proteção contra CSRF;
 - Implementação de funcionalidades adicionais para a página do usuário, como 
 visualização de dados específicos do usuário e os produtos que ele adicionou.

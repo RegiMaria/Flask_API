@@ -1,87 +1,95 @@
-{% extends 'index.html' %}
+{% extends 'base.html' %}
 
 {% block title %}
-Confirmação de Cadastro
+novo produto
 {% endblock %}
 
-{% block navbar%}
+{% block navbar %}
 <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-        <div class="container-fluid">
-            <a class="navbar-brand" href="{{url_for('index')}}">Página Inicial</a>
-            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
+    <div class="container-fluid">
+        <a class="navbar-brand" href="{{ url_for('index') }}">Página Inicial</a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
                 aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-                <span class="navbar-toggler-icon"></span>
-            </button>
-            <div class="collapse navbar-collapse" id="navbarNav">
-                
-                <ul class="navbar-nav me-auto">
-                    <li class="nav-item">
-                        <a class="nav-link active" aria-current="page" href="#"></a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="#"></a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="#"></a>
-                    </li>
-                </ul>
-                <ul class="navbar-nav ms-auto align-items-center">
-                    <li class="nav-item" style="color: lawngreen;width: 100px;" >
-                        <i class="fas fa-paw"></i> 
-                        Olá, {{ current_user.nome }}
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="{{ url_for('logout') }}">Sair</a>
-                    </li>
-                </ul>
-                
-            </div>
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav me-auto">
+                <li class="nav-item">
+                    <a class="nav-link active" aria-current="page" href="#"></a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#"></a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#"></a>
+                </li>
+            </ul>
+            <ul class="navbar-nav ms-auto align-items-center">
+                <li class="nav-item" style="color: lawngreen;width: 100px;" >
+                    <i class="fas fa-paw"></i>
+                    Olá, {{ current_user.nome }}
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="{{ url_for('users') }}">Voltar</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="{{ url_for('logout') }}">Sair</a>
+                </li>
+            </ul>
         </div>
-    </nav>
-{% endblock %}
-
-
-{% block conteudo %}
-<div class="container">
-    <div class="row justify-content-center">
-        <div class="col-md-8">
-            <div class="card">
-                <div class="card-header">
-                    Produto Cadastrado com Sucesso!
-                </div>
-                <div class="card-body">
-                    <p>Aqui estão os detalhes do seu produto:</p>
-                    <dl class="row">
-                        <dt class="col-sm-3">Nome:</dt>
-                        <dd class="col-sm-9">{{ product.name }}</dd>
-
-                        <dt class="col-sm-3">Tipo:</dt>
-                        <dd class="col-sm-9">{{ product.type }}</dd>
-
-                        <dt class="col-sm-3">Corante:</dt>
-                        <dd class="col-sm-9">{{ product.corante }}</dd>
-
-                        <dt class="col-sm-3">Transgênico:</dt>
-                        <dd class="col-sm-9">{{ product.transgenico }}</dd>
-
-                        <dt class="col-sm-3">Aditivos Químicos Sintéticos:</dt>
-                        <dd class="col-sm-9">{{ product.aditivos_quimicos_sinteticos }}</dd>
-
-                        <dt class="col-sm-3">Organismos Geneticamente Modificados:</dt>
-                        <dd class="col-sm-9">{{ product.organismos_geneticamente_modificados }}</dd>
-                    </dl>
-                </div>
-            </div>
-        </div>
-    </div>
-</div>
-<nav class="navbar navbar-light bg-light">
-    <div class="container justify-content-center">
-        <form class="d-flex">
-            <a href="{{ url_for('product_addition') }}" class="btn btn-outline-success me-3">Cadastrar mais produtos</a>
-
-            <a href="{{url_for('products')}}" class="btn btn-outline-success me-3" type="button">Visualizar página de produtos</a>               
-        </form>
     </div>
 </nav>
+{% endblock %}
+
+{% block conteudo %}
+<h2 style="text-align: center">Cadastre um novo produto</h2>
+<hr>
+<form id="form-cadastro-produto" class="needs-validation" novalidate action="{{ url_for('product_addition') }}" method="POST">
+    {{ form.hidden_tag() }}
+    <div class="col-md-6 offset-md-3 my-5">
+        <div class="form-group">
+            {{ form.type.label(class="form-label") }}
+            {{ form.type(class="form-control", id="tipo", required=true) }}
+            <div class="invalid-feedback">
+                {{ form.type.errors[0] if form.type.errors else "Por favor, insira o tipo do produto." }}
+            </div>
+        </div>
+    </div>
+    <div class="col-md-6 offset-md-3 my-5">
+        <div class="form-group">
+            {{ form.name.label(class="form-label") }}
+            {{ form.name(class="form-control", id="nome", required=true) }}
+            <div class="invalid-feedback">
+                {{ form.name.errors[0] if form.name.errors else "Por favor, insira o nome do produto." }}
+            </div>
+        </div>
+    </div>
+    <div class="col-md-6 offset-md-3 my-5">
+        <div class="form-group">
+            {{ form.corante.label(class="form-label") }}
+            {{ form.corante(class="form-control", id="corante") }}
+        </div>
+    </div>
+    <div class="col-md-6 offset-md-3 my-5">
+        <div class="form-group">
+            {{ form.transgenico.label(class="form-label") }}
+            {{ form.transgenico(class="form-control", id="transgenico") }}
+        </div>
+    </div>
+    <div class="col-md-6 offset-md-3 my-5">
+        <div class="form-group">
+            {{ form.aditivos_quimicos_sinteticos.label(class="form-label") }}
+            {{ form.aditivos_quimicos_sinteticos(class="form-control w-100", id="aditivos") }}
+        </div>
+    </div>
+    <div class="col-md-6 offset-md-3 my-5">
+        <div class="form-group">
+            {{ form.organismos_geneticamente_modificados.label(class="form-label") }}
+            {{ form.organismos_geneticamente_modificados(class="form-control w-100", id="ogm") }}
+        </div>
+    </div>
+    <div class="col-md-6 offset-md-3 my-5 text-center">
+        <button type="submit" class="btn btn-outline-success">Cadastrar Produto</button>
+    </div>
+</form>
 {% endblock %}
