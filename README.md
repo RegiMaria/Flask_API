@@ -52,4 +52,4 @@ visualização de dados específicos do usuário e os produtos que ele adicionou
 
 Mais informações na documentação da aplicação.
 
-![](img/home.png)
+![application-img/edit_product.png](application-img/edit_product.png)
